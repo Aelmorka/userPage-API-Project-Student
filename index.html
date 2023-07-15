@@ -8,7 +8,11 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
     <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
-
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
+    <script src="APIManager.js"></script>
+    <script src="Renderer.js"></script>
+    <script src="main.js"></script>
 </head>
 
 <body>
@@ -24,11 +28,73 @@
             <div class="friends-container">	
             </div>	
         </div>	
-        <div class="buttons">	
-            <button>Load User Data</button>	
-            <button>Display User</button>	
+        <div class="buttons">
+            <button id="generate">Generate User</button>		
+            <button id="save">Save User Data</button>	
+            <button id="display">Display User List</button>
+            <button id="remove">Remove User Data</button>
+            <button id="clear">Clear All Users Data</button>	
         </div>	
     </div>
-</body>
 
+    <div class="popup hidden">
+        <div class="stored-users__container">
+            <p>Choose user to display</p>
+            <div class="stored-users"></div>
+        </div>
+    </div>
+
+    <script id="user" type="text/text/x-handlebars-template">
+        <div class="result {{gender}}" data-id={{id}}>
+            <img src="{{picture.large}}" id="profile-pic" alt="" />
+            <div class="user-info">
+                <div class="name">{{name.first}} {{name.last}}</div>
+                <div class="location">{{location.city}}, {{location.state}}</div>
+            </div>
+            {{#if saved}}
+                <div class="saved">Saved user</div>
+            {{/if}}
+        </div>
+    </script>
+
+    <script id="quote" type="text/text/x-handlebars-template">
+        <div>
+            Favorite quote:
+            <p>{{quote}}</p>
+        </div>
+        
+    </script>
+
+    <script id="pokemon" type="text/text/x-handlebars-template">
+        <img id="pokemon-image" src="{{img}}" alt="">
+        <p>Favorite pokemon: <span class="pokemon-name">{{name}}</span></p>
+    </script>
+    <script id="meat" type="text/text/x-handlebars-template">
+        <div>
+            <p>About me:</p>
+            <p>{{.}}</p>
+        </div>
+        
+    </script>
+    <script id="friends" type="text/text/x-handlebars-template">
+        <ul>
+            {{#each friends}}
+                <li>
+                    {{name.first}} {{name.last}}
+                </li>
+            {{/each}}
+        </ul>
+        
+    </script>
+    <script id="storedUsers" type="text/text/x-handlebars-template">
+        <ul class="stored-users__list">
+            {{#each users}}
+                <li class="stored-users__user" data-id={{person.id}}>
+                    {{person.name.first}} {{person.name.last}}
+                </li>
+            {{/each}}
+        </ul>
+        
+    </script>
+</body>
 </html>
