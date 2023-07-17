@@ -16,12 +16,15 @@
 </head>
 
 <body>
-    <div class="container">	
-        <div class="user-container"></div>	
-        <div class="quote-container"></div>	
-        <div class="content-container">	
-            <div class="pokemon-container"></div>	
+    <button class="generate-first"><span>Generate user</span></button>
+    <div class="container hidden">	
+        <div class="main-info">
+            <div class="user-container"></div>
+            <div class="pokemon-container"></div>
             <div class="meat-container"></div>	
+        </div> 
+        <div class="content-container">	
+            <div class="quote-container"></div>	
         </div>	
         <div class="friends">	
             <h4>Friends</h4>	
@@ -58,24 +61,20 @@
     </script>
 
     <script id="quote" type="text/text/x-handlebars-template">
-        <div>
-            Favorite quote:
-            <p>{{quote}}</p>
-        </div>
-        
+        Favorite quote:
+        <p>{{quote}}</p>
     </script>
 
     <script id="pokemon" type="text/text/x-handlebars-template">
         <img id="pokemon-image" src="{{img}}" alt="">
         <p>Favorite pokemon: <span class="pokemon-name">{{name}}</span></p>
     </script>
+
     <script id="meat" type="text/text/x-handlebars-template">
-        <div>
-            <p>About me:</p>
-            <p>{{.}}</p>
-        </div>
-        
+        <p>About me:</p>
+        <p>{{.}}</p>
     </script>
+
     <script id="friends" type="text/text/x-handlebars-template">
         <ul>
             {{#each friends}}
@@ -84,8 +83,8 @@
                 </li>
             {{/each}}
         </ul>
-        
     </script>
+
     <script id="storedUsers" type="text/text/x-handlebars-template">
         <ul class="stored-users__list">
             {{#each users}}

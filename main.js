@@ -58,6 +58,11 @@ $(document).ready(function() {
 
     render.blockSave()
 
+    $('.generate-first').click(() => {
+        user.drawAll(render, manager, 'generate')
+        render.generateFirst()
+    })
+
     $('#generate').click(() => {
         user.drawAll(render, manager, 'generate')
     })

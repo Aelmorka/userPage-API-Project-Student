@@ -61,7 +61,11 @@ class Renderer {
 
     togglePopup() {
         this.popup.toggleClass('hidden')   
+    }
 
+    generateFirst() {
+        $('.container').removeClass('hidden')
+        $('.generate-first').addClass('hidden')
     }
 
     blockSave() {
