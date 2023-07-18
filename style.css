@@ -4,6 +4,14 @@
     padding: 0;
 }
 
+:root {
+    --border-blue: rgb(48 135 162);
+    --shadow-blue: rgb(72, 210, 252);
+    --text-color: #2c3e50;
+    --border-color: #b7babe;
+    --break-point: 830px;
+}
+
 body {
     font-family: 'Nunito', sans-serif;
     position: relative;
@@ -21,12 +29,29 @@ body {
     background-color: rgba(0, 0, 0, 0.6);
 }
 
-.main-info {
-    grid-area: u;
+@media screen and (max-width: 830px) {
+    .container {
+        display: block;
+    }
+}
+
+.info-block {
     background-color: white;
-    box-shadow: 5px 5px 10px rgb(72, 210, 252);
+    box-shadow: 5px 5px 10px var(--shadow-blue), inset 0px 0px 20px var(--shadow-blue);
     border-radius: 10px;
     padding: 20px;
+    border: 1px solid var(--border-blue);
+    color: var(--text-color);
+}
+
+@media screen and (max-width: 830px) {
+    .info-block {
+        margin-bottom: 20px;
+    }
+}
+
+.main-info {
+    grid-area: u;
 }
 
 .user-container {
@@ -47,14 +72,16 @@ body {
     width: 7.2em;
     height: 2em;
     border-radius: 0.25em;
-    background: radial-gradient(#e72626, rgba(255, 255, 255, 0) 70%) 0 50%/0.5em 100% no-repeat, 
-                radial-gradient(#e72626, rgba(255, 255, 255, 0) 70%) 100% 50%/0.5em 100% no-repeat, 
-                linear-gradient(to right top, #e72626 50%, rgba(255, 255, 255, 0) 61%) 0 100%/50% 0.25em no-repeat, 
-                linear-gradient(to left top, #e72626 50%, rgba(255, 255, 255, 0) 61%) 100% 100%/50% 0.25em no-repeat, 
-                linear-gradient(#e72626 0.25em, #f36262 43%, #8a1818);
+    background: radial-gradient(#8d8912, rgba(255, 255, 255, 0) 70%) 0 50%/0.5em 100% no-repeat, 
+                radial-gradient(#c4b81c, rgba(255, 255, 255, 0) 70%) 100% 50%/0.5em 100% no-repeat, 
+                linear-gradient(to right top, #e4c229 50%, rgba(255, 255, 255, 0) 61%) 0 100%/50% 0.25em no-repeat, 
+                linear-gradient(to left top, #e0b323 50%, rgba(255, 255, 255, 0) 61%) 100% 100%/50% 0.25em no-repeat, 
+                linear-gradient(#cbbd1d 0.25em, #b1a745 43%, #8a6b18);
     clip-path: polygon(0 0, 0 0.25em, 0.25em 0.25em, 0.25em calc(100% - 0.25em), 50% 100%, calc(100% - 0.25em) calc(100% - 0.25em), calc(100% - 0.25em) 0.25em, 100% 0.25em, 100% 0);
     padding-left: 20px;
-    font-size: 20px
+    font-size: 20px;
+    padding-top: 5px;
+    color: #602c2c;
 }
 
 #profile-pic {
@@ -67,37 +94,28 @@ body {
 }
 
 .quote-container {
-    font-size: 1.5vmax;
+    font-size: 15px;
     text-align: left;
-    color: #2c3e50;
-    font-family: 'Indie Flower', cursive;
+    color: var(--text-color);
 }
 
 .quote-container>p {
-    font-family: 'Nunito', sans-serif;
-    font-size: 1vmax;
+    font-family: 'Indie Flower', cursive;
+    font-size: 20px;
 }
 
 .content-container {
     grid-area: c;
-    background-color: white;
-    box-shadow: 5px 5px 10px rgb(72, 210, 252);
-    border-radius: 10px;
-    padding: 10px;
-    color: #2c3e50;
 }
 
 .friends {
     grid-row: 3;
     grid-area: f;
-    background-color: white;
-    font-size: 15px;
-    color: #404243;
-    border-radius: 10px;
-    box-shadow: 5px 5px 10px rgb(72, 210, 252);
-    padding: 20px;
 }
-
+.friends h4 {
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 15px
+}
 ul {
     list-style-type: none;
 }
@@ -119,16 +137,17 @@ ul {
     cursor: pointer;
     margin-left: 5px;
     margin-bottom: 15px;
-    /* text-shadow: 0 -2px 0 #0881e8, 0 1px 1px #0690de; */
+    /* text-shadow: 0 -1px 0 #4a6d77, 0 1px 1px #6395a3; */
+    color: #0c3b4e;
     box-sizing: border-box;
     font-size: 20px;
     font-weight: bold;
-    color: #916b05;
     padding: 10px 20px;
     display: inline-block;
-    background-image: linear-gradient(-180deg, #cfeaf3 0%, #505d69 100%);
+    background-image: linear-gradient(-180deg, #cfeaf3 0%, #3c4b51 100%);
     border-radius: 5px;
-    border-top: 1px solid #8fbad2;
+    /* border-top: 1px solid #4f636f; */
+    border-bottom: 1px solid #616d75;
     border-bottom: 1px solid #7f909a;
     top: 0;
     transition: all .06s ease-out;
@@ -145,11 +164,17 @@ ul {
     top: 6px;
     border-radius: 5px;
     height: 40px;
-    background: linear-gradient(to top, #314f5a 0%, #e9edf1 100%); 
+    background: linear-gradient(to top, #56929d 0%, #e5e9ed 100%);
     box-shadow:
       0 1px 0 2px rgba(0,0,0,.3),
       0 5px 3px rgba(0,0,0,.5),
       0 8px 9px rgba(0,0,0,.2);    
+}
+
+.buttons button:disabled {
+    text-shadow: 0 -1px 0 #4a6d77, 0 1px 1px #6395a3;
+    color: #537c88;
+    cursor: not-allowed;
 }
 
 .generate-first {
@@ -161,29 +186,21 @@ ul {
 	font-size: 20px;
 	font-weight: 600;
     margin:  20% calc(50% - 60px);
-	
-	border: 1px solid #079ff8;
+	border: 1px solid #ba3737;
 	background-image: linear-gradient(-180deg, #ff8989 0%, #c01f1f 100%);
-	box-shadow: 0 1rem 1.25rem 0 #079ff8,
-							0 -0.25rem 1.5rem rgb(155, 15, 15) inset,
-							0 0.75rem 0.5rem rgba(255,255,255, 0.4) inset,
-							0 0.25rem 0.5rem 0 rgb(207, 70, 70) inset;
+	box-shadow: 0 1rem 1.25rem 0 var(--shadow-blue), 
+                0 -0.25rem 1.5rem rgb(155, 15, 15) inset, 
+                0 0.75rem 0.5rem rgba(255,255,255, 0.4) inset, 
+                0 0.25rem 0.5rem 0 rgb(207, 70, 70) inset, 
+                inset 0 10px 5px white
 }
 
 .generate-first span {
 	color: transparent;
 	background-image: linear-gradient(0deg, #ee8282 0%, #fefafa 100%);
-	-webkit-background-clip: text;
 	background-clip: text;
+    -webkit-background-clip: text;
 	filter: drop-shadow(0 2px 2px rgb(102, 0, 0));
-}
-
-button:disabled {
-    background-color: #2c3e50;
-}
-
-#gen-page:focus {
-    outline: none;
 }
 
 #pokemon-image {
@@ -204,7 +221,8 @@ button:disabled {
     grid-template-columns: minmax(150px, 150px) minmax(200px, 400px);
     align-items: center;
     justify-self: baseline;
-    border-bottom: 1px solid #2c3e50;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 20px;
 }
 
 .pokemon-name {
@@ -219,23 +237,27 @@ button:disabled {
     position: absolute;
     height: 100vh;
     width: 100vw;
-    background-color: rgba(3, 3, 3, 0.5);
+    background-color: rgba(3, 3, 3, 0.7);
     top: 0;
 }
 
 .stored-users__container {
-    background-color: white;
     width: 300px;
     margin: 50px auto 0;
-    padding: 10px;
+    padding: 20px;
+    border-radius: 10px;
+    background: url(generator.jpg) no-repeat;
+    color: white;
 }
 
 .stored-users__list li {
     padding: 10px;
-    background-color: antiquewhite;
-    border: 1px solid;
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    background-color: white;
     border-radius: 5px;
     margin-top: 10px;
+    box-shadow: 5px 5px 10px var(--shadow-blue), inset 0px 0px 20px var(--shadow-blue);
     cursor: pointer;
 }
 
