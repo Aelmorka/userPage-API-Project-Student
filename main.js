@@ -40,7 +40,7 @@ class User {
         localStorage.setItem("userProfiles", JSON.stringify(storedUsers))
     }
 
-    displayUserList(render) {
+    getUserList() {
         let storedUsers = JSON.parse(localStorage.getItem("userProfiles")) || []
         if (storedUsers.length != 0) {
             for (let i = 0; i < storedUsers.length; i++) {
@@ -48,7 +48,6 @@ class User {
             }
         }
         this.stored = storedUsers
-        render.renderStored(storedUsers)
     }
 }
 $(document).ready(function() {
@@ -58,9 +57,18 @@ $(document).ready(function() {
 
     render.blockSave()
 
+    //console.log()
+    user.getUserList()
+
+    if(user.stored.length != 0) {
+        user.chooseUser(0, manager)
+        user.drawAll(render, manager)
+        render.showFirst()
+    }
+
     $('.generate-first').click(() => {
         user.drawAll(render, manager, 'generate')
-        render.generateFirst()
+        render.showFirst()
     })
 
     $('#generate').click(() => {
@@ -74,7 +82,8 @@ $(document).ready(function() {
     })
 
     $('#display').click(() => {
-        user.displayUserList(render)
+        user.getUserList()
+        render.renderStored(user.stored)
         render.togglePopup()
     })
 
@@ -89,10 +98,26 @@ $(document).ready(function() {
         localStorage.clear()
         manager.person.saved = false
         render.renderUser(manager.person)
+        render.unblockSave()
     })
-
-    $('.popup').click(() => {
+    $('body').on('click', '.popup', () => {
         render.togglePopup()
+    })
+    $('body').on('click', '.del', function(evt) {
+        let id = $(this).closest('li').data().id
+        if (evt.stopPropagation) {    // standard
+            evt.stopPropagation();
+        } else {    // IE6-8
+             evt.cancelBubble = true;
+        }
+        if (manager.person.id == id) {
+            manager.person.saved = false
+            render.renderUser(manager.person)
+            render.unblockSave()
+        }
+        user.removeUser(id)
+        user.getUserList()
+        render.renderStored(user.stored)
     })
 
     $('body').on('click', '.stored-users__user', function() {
