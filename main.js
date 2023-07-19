@@ -1,4 +1,4 @@
-class User {
+class Page {
     constructor() {
         this.stored = []
     }
@@ -7,21 +7,14 @@ class User {
         if (mode == 'generate') {
             let manager = arguments[1]
             manager.setNewPerson().then(() => {
-                this.renderAll(render, manager)
+                render.renderAll(manager)
                 render.unblockSave()
             }).catch(err => {
                 console.log(err)
             }) 
         } else {
-            this.renderAll(render, manager)
+            render.renderAll(manager)
         } 
-    }
-    renderAll(render, manager) {
-        render.renderUser(manager.person)
-        render.renderMeat(manager.meat)
-        render.renderQuote(manager.quote)
-        render.renderFriends(manager.friends)
-        render.renderPokemon(manager.pokemon, manager.person.gender)
     }
     saveUser(manager) {
         let storedUsers = JSON.parse(localStorage.getItem("userProfiles")) || []
@@ -55,42 +48,40 @@ class User {
 $(document).ready(function() {
     let manager = new APIManager()
     let render = new Renderer()
-    let user = new User()
+    let page = new Page()
 
     render.blockSave()
+    page.getUserList()
 
-    //console.log()
-    user.getUserList()
-
-    if(user.stored.length != 0) {
-        user.chooseUser(0, manager)
-        user.drawAll(render, manager)
+    if(page.stored.length != 0) {
+        page.chooseUser(0, manager)
+        page.drawAll(render, manager)
         render.showFirst()
     }
 
     $('.generate-first').click(() => {
-        user.drawAll(render, manager, 'generate')
+        page.drawAll(render, manager, 'generate')
         render.showFirst()
     })
 
     $('#generate').click(() => {
-        user.drawAll(render, manager, 'generate')
+        page.drawAll(render, manager, 'generate')
     })
 
     $('#save').click(() => {
-        user.saveUser(manager)
+        page.saveUser(manager)
         render.renderUser(manager.person)
         render.blockSave()
     })
 
     $('#display').click(() => {
-        user.getUserList()
-        render.renderStored(user.stored)
+        page.getUserList()
+        render.renderStored(page.stored)
         render.togglePopup()
     })
 
     $('#remove').click(() => {
-        user.removeUser(manager.person.id)
+        page.removeUser(manager.person.id)
         manager.person.saved = false
         render.renderUser(manager.person)
         render.unblockSave()
@@ -117,13 +108,13 @@ $(document).ready(function() {
             render.renderUser(manager.person)
             render.unblockSave()
         }
-        user.removeUser(id)
-        user.getUserList()
-        render.renderStored(user.stored)
+        page.removeUser(id)
+        page.getUserList()
+        render.renderStored(page.stored)
     })
 
     $('body').on('click', '.stored-users__user', function() {
-        user.chooseUser($(this).closest('li').data().id, manager)
-        user.drawAll(render, manager)
+        page.chooseUser($(this).closest('li').data().id, manager)
+        page.drawAll(render, manager)
     })
 })

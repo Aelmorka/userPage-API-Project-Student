@@ -7,6 +7,10 @@ class APIManager {
         this.friends = []
     }
 
+    genIndex() {
+        return Math.floor(Math.random() * 1000) + 1
+    }
+
     async getPerson() {
         let person = await $.get('https://randomuser.me/api/?inc=gender,name,email,location,picture&results=1')
         return person.results[0]
@@ -22,9 +26,8 @@ class APIManager {
         return quote
     }
 
-    async getPokemon(gender) {
-        let index = Math.floor(Math.random() * 1000)
-        let pokemon = await $.get(`https://pokeapi.co/api/v2/pokemon/${index}`)
+    async getPokemon() {
+        let pokemon = await $.get(`https://pokeapi.co/api/v2/pokemon/${this.genIndex()}`)
         return { name: pokemon.name, sprites: pokemon.sprites }
     }
 

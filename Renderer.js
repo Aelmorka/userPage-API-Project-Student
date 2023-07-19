@@ -53,6 +53,14 @@ class Renderer {
         this.friends.append(html)
     }
 
+    renderAll(manager) {
+        this.renderUser(manager.person)
+        this.renderMeat(manager.meat)
+        this.renderQuote(manager.quote)
+        this.renderFriends(manager.friends)
+        this.renderPokemon(manager.pokemon, manager.person.gender)
+    }
+
     renderStored(users) {
         let html = users.length != 0 ? this.storedUsersTemplate({users: users}) : $('<p>No users saved yet</p>')
         this.storedUsers.empty()
