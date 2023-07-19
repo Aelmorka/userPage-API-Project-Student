@@ -24,29 +24,29 @@ class User {
     saveUser(manager) {
         let storedUsers = JSON.parse(localStorage.getItem("userProfiles")) || []
         manager.person.saved = true
-        manager.person.id = storedUsers.length
+        if (storedUsers.length != 0) {
+            manager.person.id = storedUsers[storedUsers.length - 1].person.id + 1
+        } else {
+            manager.person.id = storedUsers.length
+        }
         storedUsers.push(manager)
         localStorage.setItem("userProfiles", JSON.stringify(storedUsers))
     }
 
     chooseUser(id, manager) {
-        let user = this.stored.find(el => el.person.id == id)
+        let user = this.stored.find(el => el.person.id == id) || this.stored[0]
         manager.setUser(user)   
     }
 
     removeUser(id) {
         let storedUsers = JSON.parse(localStorage.getItem("userProfiles"))
-        storedUsers.splice(id, 1)
+        let index = storedUsers.findIndex(el => el.person.id == id) || 0
+        storedUsers.splice(index, 1)
         localStorage.setItem("userProfiles", JSON.stringify(storedUsers))
     }
 
     getUserList() {
         let storedUsers = JSON.parse(localStorage.getItem("userProfiles")) || []
-        if (storedUsers.length != 0) {
-            for (let i = 0; i < storedUsers.length; i++) {
-                storedUsers[i].person.id = i
-            }
-        }
         this.stored = storedUsers
     }
 }
@@ -121,7 +121,7 @@ $(document).ready(function() {
     })
 
     $('body').on('click', '.stored-users__user', function() {
-        user.chooseUser($(this).data().id, manager)
+        user.chooseUser($(this).closest('li').data().id, manager)
         user.drawAll(render, manager)
     })
 })
