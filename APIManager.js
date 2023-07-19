@@ -50,7 +50,6 @@ class APIManager {
 
     setUser(user) {
         this.person = user.person
-        //this.person.saved = true
         this.meat = user.meat
         this.quote = user.quote
         this.friends = user.friends

@@ -9,6 +9,8 @@ class User {
             manager.setNewPerson().then(() => {
                 this.renderAll(render, manager)
                 render.unblockSave()
+            }).catch(err => {
+                console.log(err)
             }) 
         } else {
             this.renderAll(render, manager)
