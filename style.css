@@ -15,7 +15,7 @@
 body {
     font-family: 'Nunito', sans-serif;
     position: relative;
-    background: url(generator.jpg) no-repeat #ecf0f1;
+    background: url(img/generator.jpg) no-repeat #ecf0f1;
     background-size: cover;
 }
 
@@ -52,6 +52,10 @@ body {
 
 .main-info {
     grid-area: u;
+    background-color: white;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .user-container {
@@ -250,7 +254,7 @@ ul {
     margin: 50px auto 0;
     padding: 20px;
     border-radius: 10px;
-    background: url(generator.jpg) no-repeat;
+    background: url(img/generator.jpg) no-repeat;
     color: white;
 }
 
@@ -274,3 +278,64 @@ ul {
 .hidden {
     display: none;
 }
+.normal {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url(img/normal.png);
+}
+.fighting {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url(img/two-swords.jpg);
+}
+.flying {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url(img/two-wings.jpg);
+}
+.poison {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url(img/poison.jpg);
+}
+.ground {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url(img/rostok.jpg);
+}
+.rock {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url(img/rock.jpg);
+}
+.bug {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url(img/bug.jpg);
+}
+.ghost {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url(img/ghost.jpg);
+}
+.steel {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url(img/steel.jpg);
+}
+.fire {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url(img/fire.jpg);
+}
+.water {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url(img/water.jpg);
+}
+.grass {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url(img/grass.jpeg);
+}
+.electric {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url(img/electric.png);
+}
+.psychic {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url(img/psychic.jpg);
+}
+.ice {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url(img/ice.jpg);
+}
+.dragon {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url(img/dragon.png);
+}
+.dark {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url(img/dark.jpg);
+}
+.fairy {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url(img/fairy.jpg);
+}
+.unknown {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url(img/unknown.jpg);
+}
+.shadow {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url(img/shadow.jpg);
+}
+

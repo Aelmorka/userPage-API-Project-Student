@@ -1,5 +1,6 @@
 class Renderer {
     constructor() {
+        this.mainInfo = $('.main-info')
         this.user = $('.user-container')
         this.quote = $('.quote-container')
         this.pokemon = $('.pokemon-container')
@@ -38,6 +39,8 @@ class Renderer {
         let img = gender == 'female' && pokemon.sprites.front_female ? pokemon.sprites.front_female : pokemon.sprites.front_default
         let pokemonRend = {name: pokemon.name, img: img}
         let html = this.pokemonTemplate(pokemonRend)
+        this.mainInfo.removeClass()
+        this.mainInfo.addClass('main-info').addClass('info-block').addClass(pokemon.type)
         this.pokemon.empty()
         this.pokemon.append(html)
     }

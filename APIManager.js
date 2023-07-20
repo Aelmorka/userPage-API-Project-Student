@@ -29,7 +29,8 @@ class APIManager {
 
     async getPokemon() {
         let pokemon = await $.get(pokemonAPI + this.genIndex(maxPokemonNum))
-        return { name: pokemon.name, sprites: pokemon.sprites }
+        console.log(pokemon)
+        return { name: pokemon.name, sprites: pokemon.sprites, type: pokemon.types[0].type.name }
     }
 
     async getMeat() {
