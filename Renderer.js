@@ -5,6 +5,7 @@ class Renderer {
         this.pokemon = $('.pokemon-container')
         this.meat = $('.meat-container')
         this.friends = $('.friends-container')
+        this.gif = $('.gif')
         this.save = $('#save')
         this.storedUsers = $('.stored-users')
         this.popup = $('.popup')
@@ -52,6 +53,9 @@ class Renderer {
         this.friends.empty()
         this.friends.append(html)
     }
+    renderGif(gifLink) {
+        this.gif.attr('src', gifLink)
+    }
 
     renderAll(manager) {
         this.renderUser(manager.person)
@@ -59,6 +63,7 @@ class Renderer {
         this.renderQuote(manager.quote)
         this.renderFriends(manager.friends)
         this.renderPokemon(manager.pokemon, manager.person.gender)
+        this.renderGif(manager.gif)
     }
 
     renderStored(users) {

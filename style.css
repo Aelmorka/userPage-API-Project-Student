@@ -233,6 +233,10 @@ ul {
     font-size: 1vmax;
 }
 
+.gif {
+    height: 200px;
+}
+
 .popup {
     position: absolute;
     height: 100vh;

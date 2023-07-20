@@ -9,6 +9,7 @@ class Page {
             manager.setNewPerson().then(() => {
                 render.renderAll(manager)
                 render.unblockSave()
+                console.log(manager)
             }).catch(err => {
                 console.log(err)
             }) 

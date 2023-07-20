@@ -5,49 +5,57 @@ class APIManager {
         this.pokemon = null
         this.meat = null
         this.friends = []
+        this.gif = null
     }
 
-    genIndex() {
-        return Math.floor(Math.random() * 1000) + 1
+    genIndex(maxNum) {
+        return Math.floor(Math.random() * maxNum) + 1
     }
 
     async getPerson() {
-        let person = await $.get('https://randomuser.me/api/?inc=gender,name,email,location,picture&results=1')
+        let person = await $.get(personAPI)
         return person.results[0]
     }
 
     async getFriends() {
-        let friends = await $.get('https://randomuser.me/api/?inc=gender,name&results=10')
+        let friends = await $.get(friendsAPI)
         return friends.results
     }
 
     async getQuote() {
-        let quote = await $.get('https://api.kanye.rest')
+        let quote = await $.get(quoteAPI)
         return quote
     }
 
     async getPokemon() {
-        let pokemon = await $.get(`https://pokeapi.co/api/v2/pokemon/${this.genIndex()}`)
+        let pokemon = await $.get(pokemonAPI + this.genIndex(maxPokemonNum))
         return { name: pokemon.name, sprites: pokemon.sprites }
     }
 
     async getMeat() {
-        let meat = await $.get('https://baconipsum.com/api/?type=all-meat&sentences=3')
+        let meat = await $.get(meatAPI)
         return meat
     }
 
-    setNewPerson() {
+    async getGif(search) {
+        let gif = await $.get(gifAPI + search)
+        return gif.data[0].embed_url
+    }
+
+    async setNewPerson() {
         let user = this.getPerson()
         let meat = this.getMeat()
         let quote = this.getQuote()
         let friends = this.getFriends()
-        let pokemon = this.getPokemon()
-        return Promise.all([user, meat, quote, friends, pokemon]).then(values => {
+        let pokemon = await this.getPokemon()
+        let gif = this.getGif(pokemon.name)
+        return Promise.all([user, meat, quote, friends, gif]).then(values => {
                 this.person = values[0]
                 this.meat = values[1]
                 this.quote = values[2]
                 this.friends = values[3]
-                this.pokemon = values[4]
+                this.gif = values[4]
+                this.pokemon = pokemon
         })
     }
 
@@ -56,6 +64,7 @@ class APIManager {
         this.meat = user.meat
         this.quote = user.quote
         this.friends = user.friends
-        this.pokemon = user.pokemon   
+        this.pokemon = user.pokemon 
+        this.gif = user.gif  
     }
 }
